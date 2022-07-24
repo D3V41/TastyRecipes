@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFrag"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home_item"/>
+    <item
+        android:id="@+id/favouriteFrag"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favourite_item"/>
+    <item
+        android:id="@+id/searchFrag"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_item"/>
+    <item
+        android:id="@+id/profileFrag"
+        android:enabled="true"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/profile_item"/>
+</menu>

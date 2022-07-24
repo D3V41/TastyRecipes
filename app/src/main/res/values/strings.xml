@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TastyRecipes</string>
+    <string name="home_item">Home</string>
+    <string name="favourite_item">Favourite</string>
+    <string name="search_item">Search</string>
+    <string name="profile_item">Profile</string>
+
 </resources>
