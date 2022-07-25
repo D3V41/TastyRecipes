@@ -67,8 +67,8 @@ public class SearchRecipeListAdapter implements ListAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        SearchData searchData = searchList.get(i);
         if(view == null){
+            SearchData searchData = searchList.get(i);
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             view = layoutInflater.inflate(R.layout.search_row_item,null);
             view.setOnClickListener(new View.OnClickListener() {

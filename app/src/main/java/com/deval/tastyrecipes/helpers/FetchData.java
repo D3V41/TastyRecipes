@@ -7,7 +7,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.deval.tastyrecipes.interfaces.VolleyCallback;
 
 public class FetchData {
-
     public static StringRequest getRequest(String randomRecipeURL,final VolleyCallback callback){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, randomRecipeURL,
                 new Response.Listener<String>() {
