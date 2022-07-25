@@ -6,10 +6,45 @@
     android:id="@+id/search_fragment"
     tools:context=".fragments.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="search" />
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:orientation="vertical">
+        <SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryBackground="@null"
+            android:queryHint="Search Recipes"
+            android:iconifiedByDefault="false"
+            android:background="@drawable/search_view_background"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/top_results"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"/>
+
+        <ListView
+            android:id="@+id/search_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null"
+            android:layout_marginTop="5dp"/>
+
+        <ProgressBar
+            android:id="@+id/search_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:visibility="gone" />
+    </LinearLayout>
 
 </FrameLayout>

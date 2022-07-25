@@ -4,5 +4,8 @@
     <string name="favourite_item">Favourite</string>
     <string name="search_item">Search</string>
     <string name="profile_item">Profile</string>
+    <string name="top_results">Top Results</string>
+    <string name="recipe_title">Recipe Title</string>
+    <string name="recipe_category">Recipe Category</string>
 
 </resources>

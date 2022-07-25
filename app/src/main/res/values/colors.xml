@@ -10,8 +10,9 @@
     <color name="pink_700">#C2185B</color>
     <color name="pink_800">#AD1457</color>
     <color name="pink_900">#880E4F</color>
-    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_200">#880E4F</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="light_black">#50000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
