@@ -1,5 +1,6 @@
 package com.deval.tastyrecipes.models;
 
+//search item data
 public class SearchData {
     private String recipeTitle;
     private String recipeCategory;

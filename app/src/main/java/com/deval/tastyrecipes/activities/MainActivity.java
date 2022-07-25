@@ -19,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //declaring widgets
     BottomNavigationView bottomNavigationView;
     FrameLayout frameView;
 
@@ -27,15 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //initializing widgets
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         frameView = findViewById(R.id.frame);
 
+        //when app open by default home is selected in bottom navigation bar and home fragment is
+        //in frame layout
         bottomNavigationView.setBottom(R.id.homeFrag);
         Fragment fragment = new HomeFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment);
         fragmentTransaction.commit();
 
+        //on bottom navigation view by clicking(search,home,favourite,profile) icon changing fragments
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

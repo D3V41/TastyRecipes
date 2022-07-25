@@ -16,10 +16,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+//search recipe adapter using which showing all the results on search fragment
 public class SearchRecipeListAdapter implements ListAdapter {
+    //declaring variables
     ArrayList<SearchData> searchList;
     Context context;
 
+    //initializing variables
     public SearchRecipeListAdapter(Context context, ArrayList<SearchData> searchData) {
         this.searchList=searchData;
         this.context=context;
@@ -45,6 +48,7 @@ public class SearchRecipeListAdapter implements ListAdapter {
 
     }
 
+    //gets the size of the result
     @Override
     public int getCount() {
         return searchList.size();
@@ -65,6 +69,8 @@ public class SearchRecipeListAdapter implements ListAdapter {
         return false;
     }
 
+    //getting items from searchlist and setting it into the search result row
+    //using picasso external library to show images which are in the form of http url
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null){
