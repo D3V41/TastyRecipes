@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1038097024029",
+    "firebase_url": "https://tastyrecipes-3bdc7-default-rtdb.firebaseio.com",
+    "project_id": "tastyrecipes-3bdc7",
+    "storage_bucket": "tastyrecipes-3bdc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038097024029:android:ef6becb7495282c02932f4",
+        "android_client_info": {
+          "package_name": "com.deval.tastyrecipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038097024029-idba2fk1dmj9jnpf8796recm90hpg7gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC1N8flqTwB4RhcUlVFFF0EK5DXzHPQn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038097024029-idba2fk1dmj9jnpf8796recm90hpg7gf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1038097024029-20n41h3fu987mgbibcr8u0oslkescbtg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ios.TastyRecipes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,12 +17,28 @@ import com.deval.tastyrecipes.fragments.HomeFragment;
 import com.deval.tastyrecipes.fragments.ProfileFragment;
 import com.deval.tastyrecipes.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     //declaring widgets
     BottomNavigationView bottomNavigationView;
     FrameLayout frameView;
+
+    private FirebaseAuth mAuth;
+    FirebaseUser fUser;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        fUser = mAuth.getCurrentUser();
+        if(fUser == null){
+            startActivity(new Intent(this, LoginActivity.class));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         //initializing widgets
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         frameView = findViewById(R.id.frame);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //when app open by default home is selected in bottom navigation bar and home fragment is
         //in frame layout
