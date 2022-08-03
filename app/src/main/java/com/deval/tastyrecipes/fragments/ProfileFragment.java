@@ -60,19 +60,15 @@ public class ProfileFragment extends Fragment {
         userId = user.getUid();
 
 
-
-        edtPassword.setOnTouchListener(new View.OnTouchListener() {
+        edtPassword.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
                 if(edtPassword.getInputType() == InputType.TYPE_CLASS_TEXT)
                 {
                     edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }else {
                     edtPassword.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
-
-
-                return true;
             }
         });
 

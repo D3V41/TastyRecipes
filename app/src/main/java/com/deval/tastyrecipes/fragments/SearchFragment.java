@@ -146,6 +146,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onSuccess(String result) {
                 try {
+                    recipeList.setAdapter(null);
                     searchPB.setVisibility(View.GONE);
                     searchTitle.setText("Top Results");
                     JSONObject responseData = new JSONObject(result);
