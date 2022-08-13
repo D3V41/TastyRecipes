@@ -7,8 +7,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.deval.tastyrecipes.R;
+import com.deval.tastyrecipes.adapters.SearchRecipeListAdapter;
+import com.deval.tastyrecipes.helpers.FetchData;
+import com.deval.tastyrecipes.interfaces.VolleyCallback;
+import com.deval.tastyrecipes.models.SearchData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,51 +33,81 @@ import com.deval.tastyrecipes.R;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+    //declaring widgets and variables
+    ListView categoriesList;
+    TextView categoriesTitle;
+    View v;
+    RequestQueue requestQueue;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //setting up apis
+    public static final String categoriesURL = "https://www.themealdb.com/api/json/v1/1/categories.php";
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        v = inflater.inflate(R.layout.fragment_home, container, false);
+        //calling init method to initialize all the variables and widgets
+        init();
+        return v;
+    }
+
+    //initializing all the variables and widgets
+    //calling recipes list based on search view query
+    private void init() {
+        categoriesList = v.findViewById(R.id.categories_lv);
+        categoriesTitle = v.findViewById(R.id.categories_title_tv);
+
+        //Using volley to get data from http api and for the request queue created
+        requestQueue = Volley.newRequestQueue(getActivity());
+
+        getCategories(categoriesURL);
+
+    }
+
+    //getDish method getting data from Url using Volley and callback method
+    //setting progress bar visible while loading result
+    public void getCategories(String RecipeURL){
+
+        //inside requestQueue calling FetchData.getRequest method to get the url response and extracting
+        //data from that response and setting it up in searchData class and then adding the data into the
+        //search array list then creating new adapter and setting it into recipeList
+        requestQueue.add(FetchData.getRequest(RecipeURL, new VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    categoriesList.setAdapter(null);
+                    categoriesTitle.setText("Categories");
+                    JSONObject responseData = new JSONObject(result);
+                    JSONArray categoriesArray = responseData.getJSONArray("categories");
+                    for (int i = 0; i < categoriesArray.length(); i++) {
+                        JSONObject category = categoriesArray.getJSONObject(i);
+
+                    }
+//                    SearchRecipeListAdapter searchRecipeListAdapter = new SearchRecipeListAdapter(getActivity(),searchDataArrayList);
+//                    categoriesList.setAdapter(searchRecipeListAdapter);
+                } catch (JSONException e) {
+                    //if there is no response then setting null adapter in recipeList and chaning
+                    //search title text
+                    categoriesTitle.setText("No Results");
+                    categoriesList.setAdapter(null);
+                    e.printStackTrace();
+                }
+            }
+
+            //if there is any error which loading data from url then it will toast here
+            @Override
+            public void onError(String result) {
+                Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
+            }
+        }));
     }
 }
