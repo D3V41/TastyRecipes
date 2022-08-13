@@ -1,5 +1,6 @@
 package com.deval.tastyrecipes.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ import com.deval.tastyrecipes.R;
 import com.deval.tastyrecipes.adapters.SearchRecipeListAdapter;
 import com.deval.tastyrecipes.helpers.FetchData;
 import com.deval.tastyrecipes.interfaces.VolleyCallback;
+import com.deval.tastyrecipes.models.Recipe;
 import com.deval.tastyrecipes.models.SearchData;
 
 import org.json.JSONArray;
@@ -32,7 +34,7 @@ public class SearchFragment extends Fragment {
     //declaring widgets and variables
     ListView recipeList;
     SearchView searchView;
-    ProgressBar searchPB;
+        ProgressBar searchPB;
     TextView searchTitle;
     View v;
     ArrayList<SearchData> searchDataArrayList;
@@ -159,6 +161,7 @@ public class SearchFragment extends Fragment {
                     }
                     SearchRecipeListAdapter searchRecipeListAdapter = new SearchRecipeListAdapter(getActivity(),searchDataArrayList);
                     recipeList.setAdapter(searchRecipeListAdapter);
+
                 } catch (JSONException e) {
                     //if there is no response then setting null adapter in recipeList and chaning
                     //search title text
