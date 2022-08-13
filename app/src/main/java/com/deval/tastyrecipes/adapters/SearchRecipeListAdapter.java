@@ -1,6 +1,7 @@
 package com.deval.tastyrecipes.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.deval.tastyrecipes.R;
+import com.deval.tastyrecipes.activities.recipe;
 import com.deval.tastyrecipes.models.SearchData;
 import com.squareup.picasso.Picasso;
 
@@ -81,6 +83,9 @@ public class SearchRecipeListAdapter implements ListAdapter {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(context, searchData.getRecipeTitle(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, recipe.class);
+                    intent.putExtra("recipeTitle", searchData.getRecipeTitle());
+                    context.startActivity(intent);
                 }
             });
             TextView rTitle = view.findViewById(R.id.recipeTitle);
