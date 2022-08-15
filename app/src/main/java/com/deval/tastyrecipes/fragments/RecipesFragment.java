@@ -101,7 +101,6 @@ public class RecipesFragment extends Fragment {
                     JSONObject responseData = new JSONObject(result);
 
                     JSONArray categoriesArray = responseData.getJSONArray("meals");
-                    Log.d("data",categoriesArray.length()+"");
                     for (int i = 0; i < categoriesArray.length(); i++) {
                         JSONObject recipe = categoriesArray.getJSONObject(i);
                         CategoryRecipe recipeDetails = new CategoryRecipe(recipe.getInt("idMeal"),recipe.getString("strMeal"),

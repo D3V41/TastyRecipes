@@ -93,10 +93,7 @@ public class CategoryAdapter implements ListAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, categoryData.getCategoryTitle(), Toast.LENGTH_SHORT).show();
-//                    Intent intent = new Intent(context, RecipesFragment.class);
-//                    intent.putExtra("categoryId", categoryData.getCategoryId());
-//                    context.startActivity(intent);
+
                     FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
                     RecipesFragment rf = new RecipesFragment();
                     Bundle bundle = new Bundle();

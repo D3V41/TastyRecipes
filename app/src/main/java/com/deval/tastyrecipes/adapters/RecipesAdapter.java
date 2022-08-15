@@ -88,7 +88,6 @@ public class RecipesAdapter implements ListAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, recipesData.getRecipeTitle(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(context, recipe.class);
                     intent.putExtra("recipeTitle", recipesData.getRecipeTitle());
                     context.startActivity(intent);
