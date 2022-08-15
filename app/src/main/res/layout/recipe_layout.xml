@@ -31,7 +31,8 @@
              />
         <ImageView
             android:id="@+id/favouriteIcon"
-            android:layout_width="30dp"
+            android:layout_width
+                ="30dp"
             android:layout_height="30dp"
             app:tint="@color/pink_200"
             android:src="@drawable/ic_baseline_favorite_border_24"
