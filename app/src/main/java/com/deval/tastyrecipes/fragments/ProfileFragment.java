@@ -31,12 +31,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ProfileFragment extends Fragment {
 
+    //initializing widgets
     View v;
     FrameLayout profileFrame;
     EditText edtName, edtEmail, edtPassword ,edtAddress;
     Button btnLogout, btnUpdate;
+
+    //firebase reference
     DatabaseReference reference;
     FirebaseUser user;
+
     String userId;
 
     public ProfileFragment() {
@@ -48,6 +52,8 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        //initializing widgets
         edtName = v.findViewById(R.id.edtUserName);
         edtEmail = v.findViewById(R.id.edtUserEmail);
         edtPassword = v.findViewById(R.id.edtUserPassword);
@@ -57,27 +63,34 @@ public class ProfileFragment extends Fragment {
         profileFrame = v.findViewById(R.id.profile_fragment);
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        //getting Current loggedIn UserId
         userId = user.getUid();
 
-
+        //password field Onclick event to make it readable
         edtPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(edtPassword.getInputType() == InputType.TYPE_CLASS_TEXT)
                 {
+                    //if input type=text make it to password
                     edtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 }else {
+                    //if input type=password make it to text
                     edtPassword.setInputType(InputType.TYPE_CLASS_TEXT);
                 }
             }
         });
 
+        //firebase method to retrieve user data
         reference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //store retrieved data in User object
                 User userProfile = snapshot.getValue(User.class);
 
                 if(userProfile != null){
+                    //displaying User Profile info from object
                     edtName.setText(userProfile.getName());
                     edtEmail.setText(userProfile.getEmail());
                     edtPassword.setText(userProfile.getPassword());
@@ -87,21 +100,26 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                //fail error
                 Snackbar.make(profileFrame, "Something Went Wrong!", Snackbar.LENGTH_LONG).show();
             }
         });
 
+        //logout Button onClick event
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //signOut currentUser and redirect to Login Activity
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
 
+        //update Button onClick event
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //updating name/address value from entered Edit text field
                 reference.child(userId).child("name").setValue(edtName.getText().toString().trim());
                 reference.child(userId).child("address").setValue(edtAddress.getText().toString().trim());
                 Snackbar.make(profileFrame, "Profile Updated!", Snackbar.LENGTH_LONG).show();

@@ -29,12 +29,15 @@ import java.util.regex.Pattern;
 
 public class RegisterFragment extends Fragment {
 
+    //declaring widgets
     View v;
     FrameLayout registerFrame, homeFrame;
     String email, name, password, cPassword, address;
     EditText edtName, edtEmail, edtPassword, edtConfirmPassword, edtAddress;
     Button btnRegister;
     User user;
+
+    //firebase reference
     private FirebaseAuth mAuth;
 
     public RegisterFragment() {
@@ -48,6 +51,7 @@ public class RegisterFragment extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_register, container, false);
 
+        //initializing widgets
         registerFrame = v.findViewById(R.id.registerFrame);
         homeFrame = (FrameLayout) inflater.inflate(R.layout.activity_main, container, false).findViewById(R.id.frame);
         edtName = v.findViewById(R.id.edtRegisterName);
@@ -59,9 +63,11 @@ public class RegisterFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Register Button Onclick event
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //userDefine method
                 registerUser();
             }
         });
@@ -70,18 +76,14 @@ public class RegisterFragment extends Fragment {
     }
 
     private void registerUser() {
+        //getting value from EditText (Register Form)
         email = edtEmail.getText().toString().trim();
         name = edtName.getText().toString().trim();
         password = edtPassword.getText().toString().trim();
         cPassword = edtConfirmPassword.getText().toString().trim();
         address = edtAddress.getText().toString().trim();
 
-//        email = "abhi@gmail.com";
-//        name = "name";
-//        password = "Bhalebhale";
-//        cPassword = "Bhalebhale";
-//        address = "city";
-
+        //validating Register Form
         if(name.isEmpty()){
             edtName.setError("Name required!");
             edtName.requestFocus();
@@ -113,28 +115,36 @@ public class RegisterFragment extends Fragment {
             return;
         }
 
+        //Creating Firebase User with method of firebase
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            //create User Object
                             user = new User(name, email, password, address);
 
+                            //get firebase database reference and Store user object in Realtime Database
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
+                                        //on successful register Redirect User to Main Activity
                                         Intent intent = new Intent(getActivity(), MainActivity.class);
+
+                                        //welcome message
                                         Toast.makeText(getActivity(),"Welcome "+user.getName(),Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                     }else {
+                                        //Fail error
                                         Snackbar.make(registerFrame, "Failed to Create User", Snackbar.LENGTH_LONG).show();
                                     }
                                 }
                             });
                         }else {
+                            //Fail error
                             Snackbar.make(registerFrame, "Error: "+task.getException().getMessage(), Snackbar.LENGTH_INDEFINITE).show();
                         }
                     }
