@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //check if user not exist redirect to Login Screen
+        //if user previously not logout comes in Home Screen
         fUser = mAuth.getCurrentUser();
         if(fUser == null){
             startActivity(new Intent(this, LoginActivity.class));

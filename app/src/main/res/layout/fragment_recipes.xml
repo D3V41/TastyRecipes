@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/home_fragment"
-    tools:context=".fragments.HomeFragment">
+    android:id="@+id/recipe_fragment"
+    tools:context=".fragments.RecipesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +15,10 @@
 
 
         <TextView
-            android:id="@+id/categories_title_tv"
+            android:id="@+id/recipes_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/categories"
+            android:text="@string/recipes"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -27,7 +27,7 @@
             android:layout_marginTop="5dp"/>
 
         <ListView
-            android:id="@+id/categories_lv"
+            android:id="@+id/recipes_lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@null"

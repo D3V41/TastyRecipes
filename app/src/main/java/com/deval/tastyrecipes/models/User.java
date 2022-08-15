@@ -1,8 +1,12 @@
 package com.deval.tastyrecipes.models;
 
+//User class
 public class User {
+
+    //variables
     private String name, email, password, address;
 
+    //constructors
     public User() {
     }
 
@@ -13,6 +17,7 @@ public class User {
         this.address = address;
     }
 
+    //getters and setters
     public String getName() {
         return name;
     }
