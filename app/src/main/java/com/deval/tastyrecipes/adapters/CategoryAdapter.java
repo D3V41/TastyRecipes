@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+//This is a category adapter class to get the category data by implementing list adapter
 public class CategoryAdapter implements ListAdapter {
     //declaring variables
     ArrayList<Category> categoryList;
@@ -35,11 +36,13 @@ public class CategoryAdapter implements ListAdapter {
         this.context=context;
     }
 
+    //This method checks if all the items are enabled
     @Override
     public boolean areAllItemsEnabled() {
         return false;
     }
 
+    //This method checks if enabled
     @Override
     public boolean isEnabled(int i) {
         return true;
@@ -61,22 +64,25 @@ public class CategoryAdapter implements ListAdapter {
         return categoryList.size();
     }
 
+    //This method is used to get Item
     @Override
     public Object getItem(int i) {
         return i;
     }
 
+    //This method is used to get the Item Id
     @Override
     public long getItemId(int i) {
         return i;
     }
 
+    //This method is used to check if it has stable Ids
     @Override
     public boolean hasStableIds() {
         return false;
     }
 
-    //getting items from searchlist and setting it into the search result row
+    //getting items from categorylist and setting it into the category data row
     //using picasso external library to show images which are in the form of http url
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -109,16 +115,19 @@ public class CategoryAdapter implements ListAdapter {
         return view;
     }
 
+    //This method is used to get the Item view type
     @Override
     public int getItemViewType(int i) {
         return i;
     }
 
+    //This method is used to get the view type count
     @Override
     public int getViewTypeCount() {
         return categoryList.size();
     }
 
+    //This method is used to check if empty
     @Override
     public boolean isEmpty() {
         return false;

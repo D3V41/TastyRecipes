@@ -31,11 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment} factory method to
- * create an instance of this fragment.
+     This is a Home Fragment in which we show the list of categories available in the tasty recipes app
  */
 public class HomeFragment extends Fragment {
+
     //declaring widgets and variables
     ListView categoriesList;
     TextView categoriesTitle;
@@ -46,15 +45,18 @@ public class HomeFragment extends Fragment {
     //setting up apis
     public static final String categoriesURL = "https://www.themealdb.com/api/json/v1/1/categories.php";
 
+    //Empty constructor
     public HomeFragment() {
         // Required empty public constructor
     }
 
+    //This is the On create method that calls its parent constructor
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    //This is the On create view method that inflates the fragment_home xml view file to be used here and calls init method
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,7 +67,7 @@ public class HomeFragment extends Fragment {
     }
 
     //initializing all the variables and widgets
-    //calling recipes list based on search view query
+    //calling getCategories method based on the categories URL
     private void init() {
         categoriesList = v.findViewById(R.id.categories_lv);
         categoriesTitle = v.findViewById(R.id.categories_title_tv);

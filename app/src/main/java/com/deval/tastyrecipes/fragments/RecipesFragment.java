@@ -32,9 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link RecipesFragment} factory method to
- * create an instance of this fragment.
+    This is the Recipes fragment class that displays the list of recipes under the selected category
  */
 public class RecipesFragment extends Fragment {
 
@@ -50,27 +48,24 @@ public class RecipesFragment extends Fragment {
     //setting up apis
     public static final String recipesURL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=";
 
+    //Empty constructor
     public RecipesFragment() {
         // Required empty public constructor
     }
 
-
+    //This is the On create method
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+    //This is the On create view method in which we are inflating fragment_recipes and calling init method
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_recipes, container, false);
-        //calling init method to initialize all the variables and widgets
-//        Intent i = getIntent();
-//        Bundle b = i.getExtras();
-//        if (b != null) {
-//            recipeNameToSearch = b.getString("recipeTitle");
-//        }
+
         categoryName = getArguments().getString("categoryName");
         Toast.makeText(getActivity(),categoryName+"",Toast.LENGTH_SHORT).show();
         init();
@@ -78,7 +73,7 @@ public class RecipesFragment extends Fragment {
     }
 
     //initializing all the variables and widgets
-    //calling recipes list based on search view query
+    //calling recipes list based on category recipe
     private void init() {
         recipesList = v.findViewById(R.id.recipes_lv);
         recipesTitle = v.findViewById(R.id.recipes_title_tv);
@@ -96,7 +91,7 @@ public class RecipesFragment extends Fragment {
 
         //inside requestQueue calling FetchData.getRequest method to get the url response and extracting
         //data from that response and setting it up in Category class and then adding the data into the
-        //category array list then creating new adapter and setting it into categories list
+        //recipes array list then creating new adapter and setting it into recipes list
         requestQueue.add(FetchData.getRequest(RecipeURL+categoryName, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {

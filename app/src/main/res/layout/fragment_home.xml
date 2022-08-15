@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/categories"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textStyle="bold"
